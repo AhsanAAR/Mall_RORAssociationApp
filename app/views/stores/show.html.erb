@@ -1,0 +1,67 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @store %>
+
+<div>
+  <%= link_to "Edit this store", edit_store_path(@store) %> |
+  <%= link_to "Back to stores", stores_path %>
+
+  <%= button_to "Destroy this store", @store, method: :delete %>
+
+  <h2>Products</h2>
+  <% @store.products.each do |product| %>
+    <p>
+      <strong>Product Name:</strong>
+      <%= product.product_name %>
+    </p>
+  
+    <p>
+      <strong>Product Description:</strong>
+      <%= product.product_description %>
+    </p>
+
+    <p>
+      <strong>Category:</strong>
+      <%= product.category %>
+    </p>
+
+    <p>
+      <strong>Price:</strong>
+      <%= product.price %>
+    </p>
+
+    <p>
+      <strong>Order Date:</strong>
+      <%= product.order_date %>
+    </p>
+  <% end %>
+
+
+  <h2>Add a product:</h2>
+<%= form_with model: [ @store, @store.products.build ] do |form| %>
+  <p>
+    <%= form.label :product_name %><br>
+    <%= form.text_field :product_name %>
+  </p>
+  <p>
+    <%= form.label :product_description %><br>
+    <%= form.text_field :product_description %>
+  </p>
+  <p>
+    <%= form.label :category %><br>
+    <%= form.text_field :category %>
+  </p>
+  <p>
+    <%= form.label :price %><br>
+    <%= form.text_field :price %>
+  </p>
+
+  <p>
+    <%= form.label :order_date %><br>
+    <%= form.date_select :order_date %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+</div>
